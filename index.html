@@ -724,6 +724,17 @@ footer .heart { color: #00e5a0; }
           <canvas id="buckPWMChart" class="sim-chart"></canvas>
         </div>
 
+        <!-- Interactive Simulation Embed -->
+        <button class="sim-embed-toggle" onclick="toggleSimEmbed('buck-embed', this)">&#9889; View Full Interactive Simulation Report</button>
+        <div id="buck-embed" style="display:none;">
+          <div class="sim-embed-wrapper">
+            <div class="sim-embed-header">
+              <span><span class="pulse" style="display:inline-block;vertical-align:middle;margin-right:6px;"></span> Full SPICE Simulation &mdash; Schematic, Waveforms, Netlist &amp; Analysis</span>
+              <a href="buck_converter_portfolio.html" target="_blank">Open Full Page &#8599;</a>
+            </div>
+            <iframe src="buck_converter_portfolio.html" loading="lazy" title="DC-DC Buck Converter - Full SPICE Simulation Report"></iframe>
+          </div>
+        </div>
 
       </div>
     </div>
