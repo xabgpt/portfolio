@@ -430,6 +430,66 @@ footer .heart { color: #00e5a0; }
   .specs-grid { grid-template-columns: 1fr 1fr; }
 }
 
+/* ===== INTERACTIVE SIM EMBED ===== */
+.sim-embed-wrapper {
+  position: relative;
+  margin: 1.5rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 229, 160, 0.15);
+  background: #0d1117;
+}
+.sim-embed-wrapper iframe {
+  width: 100%;
+  height: 600px;
+  border: none;
+  display: block;
+}
+.sim-embed-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.5rem;
+  background: rgba(0, 229, 160, 0.08);
+  border: 1px solid rgba(0, 229, 160, 0.25);
+  border-radius: 8px;
+  color: #00e5a0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 1rem;
+}
+.sim-embed-toggle:hover {
+  background: rgba(0, 229, 160, 0.15);
+  border-color: rgba(0, 229, 160, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 229, 160, 0.15);
+}
+.sim-embed-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  background: rgba(0, 229, 160, 0.04);
+  border-bottom: 1px solid rgba(0, 229, 160, 0.1);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: #64748b;
+}
+.sim-embed-header a {
+  font-size: 0.7rem;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid rgba(0, 229, 160, 0.3);
+  border-radius: 4px;
+  color: #00e5a0;
+  text-decoration: none;
+}
+.sim-embed-header a:hover { background: rgba(0, 229, 160, 0.1); }
+
 /* ===== SCROLL ANIMATIONS ===== */
 .fade-in {
   opacity: 0; transform: translateY(30px);
@@ -603,6 +663,17 @@ footer .heart { color: #00e5a0; }
           <canvas id="psuRectChart" class="sim-chart"></canvas>
         </div>
 
+        <!-- Interactive Simulation Embed -->
+        <button class="sim-embed-toggle" onclick="toggleSimEmbed('psu-embed', this)">&#9889; View Full Interactive Simulation Report</button>
+        <div id="psu-embed" style="display:none;">
+          <div class="sim-embed-wrapper">
+            <div class="sim-embed-header">
+              <span><span class="pulse" style="display:inline-block;vertical-align:middle;margin-right:6px;"></span> Full SPICE Simulation &mdash; Schematic, Waveforms, Netlist &amp; Analysis</span>
+              <a href="power_supply_portfolio.html" target="_blank">Open Full Page &#8599;</a>
+            </div>
+            <iframe src="power_supply_portfolio.html" loading="lazy" title="12V Power Supply - Full SPICE Simulation Report"></iframe>
+          </div>
+        </div>
 
       </div>
     </div>
@@ -1035,6 +1106,17 @@ function linspace(a, b, n) {
   });
 })();
 
+// ===== TOGGLE SIM EMBED =====
+function toggleSimEmbed(id, btn) {
+  const el = document.getElementById(id);
+  if (el.style.display === 'none') {
+    el.style.display = 'block';
+    btn.innerHTML = '&#10005; Hide Simulation Report';
+  } else {
+    el.style.display = 'none';
+    btn.innerHTML = '&#9889; View Full Interactive Simulation Report';
+  }
+}
 
 </script>
 </body>
