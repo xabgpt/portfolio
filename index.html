@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sebastine Ogbuka | Electrical &amp; EAD Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0a0e17;
+  color: #c8cdd5;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+a { color: #00e5a0; text-decoration: none; transition: color 0.3s; }
+a:hover { color: #00ffc8; }
+
+/* ===== ANIMATED CIRCUIT BACKGROUND ===== */
+.circuit-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image:
+    linear-gradient(#00e5a0 1px, transparent 1px),
+    linear-gradient(90deg, #00e5a0 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ===== NAV ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(10, 14, 23, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 229, 160, 0.1);
+  padding: 0 2rem;
+}
+nav .nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px;
+}
+nav .logo {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.1rem; font-weight: 700;
+  color: #00e5a0;
+  letter-spacing: -0.5px;
+}
+nav .logo span { color: #475569; }
+nav ul { list-style: none; display: flex; gap: 2rem; }
+nav ul li a {
+  color: #8892a4; font-size: 0.85rem; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  transition: color 0.3s;
+}
+nav ul li a:hover { color: #00e5a0; }
+
+/* Mobile nav */
+.hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: #8892a4; transition: 0.3s; }
+
+/* ===== SECTIONS ===== */
+section { position: relative; z-index: 1; padding: 6rem 2rem; }
+.container { max-width: 1200px; margin: 0 auto; }
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem; text-transform: uppercase;
+  letter-spacing: 3px; color: #00e5a0;
+  margin-bottom: 0.75rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.section-label::before {
+  content: ''; width: 30px; height: 1px; background: #00e5a0;
+}
+.section-title {
+  font-size: 2.5rem; font-weight: 700; color: #e2e8f0;
+  margin-bottom: 1.5rem; line-height: 1.2;
+}
+
+/* ===== HERO ===== */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  padding-top: 64px;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(0, 229, 160, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 50%, rgba(0, 119, 255, 0.04) 0%, transparent 50%);
+}
+.hero-content { max-width: 800px; }
+.hero-tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  padding: 0.4rem 1.2rem;
+  border: 1px solid rgba(0, 229, 160, 0.3);
+  border-radius: 20px;
+  color: #00e5a0;
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
+}
+.hero-name {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700; color: #f1f5f9;
+  line-height: 1.1; margin-bottom: 1rem;
+}
+.hero-name .accent { color: #00e5a0; }
+.hero-subtitle {
+  font-size: 1.2rem; color: #64748b;
+  margin-bottom: 2.5rem; max-width: 600px; margin-inline: auto;
+}
+.hero-tools {
+  display: flex; gap: 1.5rem; justify-content: center;
+  flex-wrap: wrap; margin-bottom: 2.5rem;
+}
+.hero-tools .tool {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem; color: #64748b;
+  padding: 0.5rem 1rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 6px;
+}
+.tool .dot { width: 6px; height: 6px; border-radius: 50%; }
+.dot.green { background: #00e5a0; }
+.dot.blue { background: #3b82f6; }
+.dot.amber { background: #f59e0b; }
+.dot.red { background: #ef4444; }
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  background: linear-gradient(135deg, #00e5a0, #00b87a);
+  color: #0a0e17; font-weight: 600; font-size: 0.95rem;
+  border-radius: 8px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 229, 160, 0.25);
+  color: #0a0e17;
+}
+
+/* ===== ABOUT ===== */
+#about { background: rgba(255,255,255, 0.01); }
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: center;
+}
+.about-text p { margin-bottom: 1rem; color: #94a3b8; }
+.stats-row {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem; margin-top: 2rem;
+}
+.stat-card {
+  text-align: center; padding: 1.5rem;
+  background: rgba(0, 229, 160, 0.04);
+  border: 1px solid rgba(0, 229, 160, 0.1);
+  border-radius: 10px;
+}
+.stat-card .number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 2rem; font-weight: 700; color: #00e5a0;
+}
+.stat-card .label { font-size: 0.8rem; color: #64748b; margin-top: 0.25rem; }
+
+/* ===== SKILLS / TOOLS ===== */
+.skills-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.skill-card {
+  padding: 2rem;
+  background: linear-gradient(145deg, rgba(15,23,42,0.8), rgba(15,23,42,0.4));
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 12px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.skill-card:hover {
+  border-color: rgba(0, 229, 160, 0.3);
+  transform: translateY(-4px);
+}
+.skill-icon {
+  font-size: 2rem; margin-bottom: 1rem;
+  width: 50px; height: 50px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0, 229, 160, 0.08);
+  border-radius: 10px;
+  color: #00e5a0;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+}
+.skill-card h3 { color: #e2e8f0; font-size: 1.1rem; margin-bottom: 0.5rem; }
+.skill-card p { font-size: 0.9rem; color: #64748b; }
+
+/* ===== PROJECTS ===== */
+#projects {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(0, 229, 160, 0.03) 0%, transparent 60%);
+}
+.project-card {
+  background: linear-gradient(160deg, rgba(15,23,42,0.9), rgba(15,23,42,0.5));
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+  transition: border-color 0.3s;
+}
+.project-card:hover { border-color: rgba(0, 229, 160, 0.2); }
+.project-header {
+  padding: 2rem 2.5rem 1rem;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+}
+.project-header h3 {
+  font-size: 1.5rem; color: #e2e8f0; font-weight: 700;
+}
+.project-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem; padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  background: rgba(0, 229, 160, 0.1);
+  color: #00e5a0;
+  letter-spacing: 0.5px;
+}
+.tag.blue { background: rgba(59,130,246,0.1); color: #60a5fa; }
+.tag.amber { background: rgba(245,158,11,0.1); color: #fbbf24; }
+.project-body { padding: 0 2.5rem 2rem; }
+.project-body p { color: #94a3b8; margin-bottom: 1.5rem; }
+
+/* Simulation chart area */
+.sim-container {
+  background: #0d1117;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.sim-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem; color: #64748b;
+  margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.sim-title .pulse {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #00e5a0;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+canvas.sim-chart { width: 100% !important; height: 280px !important; }
+
+
+/* Component table */
+.component-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+.component-table th {
+  text-align: left;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #475569;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.component-table td {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  color: #94a3b8;
+}
+.component-table tr:hover td { color: #e2e8f0; }
+
+/* Specs grid */
+.specs-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem; margin: 1.5rem 0;
+}
+.spec-item {
+  padding: 1rem;
+  background: rgba(0, 229, 160, 0.03);
+  border-left: 2px solid #00e5a0;
+  border-radius: 0 6px 6px 0;
+}
+.spec-item .spec-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem; color: #475569;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+.spec-item .spec-value {
+  font-size: 1.2rem; font-weight: 700; color: #e2e8f0;
+  margin-top: 0.25rem;
+}
+
+/* ===== PROJECT 3: LIGHT FAN DRIVER ===== */
+
+/* ===== TESTIMONIALS ===== */
+#testimonials { background: rgba(255,255,255, 0.01); }
+.testimonial-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+.testimonial-card {
+  padding: 2rem;
+  background: linear-gradient(145deg, rgba(15,23,42,0.8), rgba(15,23,42,0.4));
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 12px;
+  position: relative;
+}
+.testimonial-card::before {
+  content: '\201C';
+  font-size: 4rem; color: rgba(0, 229, 160, 0.15);
+  position: absolute; top: 0.5rem; left: 1.5rem;
+  line-height: 1;
+}
+.testimonial-card p {
+  font-style: italic; color: #94a3b8;
+  margin-bottom: 1.5rem; padding-top: 1.5rem;
+}
+.testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
+.testimonial-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: linear-gradient(135deg, #00e5a0, #3b82f6);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: #0a0e17; font-size: 0.9rem;
+}
+.testimonial-name { color: #e2e8f0; font-weight: 600; font-size: 0.9rem; }
+.testimonial-role { color: #475569; font-size: 0.8rem; }
+
+/* ===== CONTACT ===== */
+#contact {
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(0, 229, 160, 0.05) 0%, transparent 60%);
+}
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 3rem; align-items: start;
+}
+.contact-info h3 { color: #e2e8f0; font-size: 1.3rem; margin-bottom: 1rem; }
+.contact-info p { color: #64748b; margin-bottom: 2rem; }
+.contact-links { display: flex; flex-direction: column; gap: 1rem; }
+.contact-link {
+  display: flex; align-items: center; gap: 1rem;
+  color: #94a3b8; font-size: 0.95rem;
+  transition: color 0.3s;
+}
+.contact-link:hover { color: #00e5a0; }
+.contact-link .icon {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0, 229, 160, 0.08);
+  border-radius: 8px;
+  font-size: 1.1rem;
+}
+.contact-form {
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.contact-form input, .contact-form textarea {
+  width: 100%; padding: 0.85rem 1rem;
+  background: rgba(15,23,42, 0.8);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  color: #e2e8f0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  transition: border-color 0.3s;
+}
+.contact-form input:focus, .contact-form textarea:focus {
+  outline: none;
+  border-color: rgba(0, 229, 160, 0.4);
+}
+.contact-form textarea { resize: vertical; min-height: 120px; }
+.contact-form button {
+  padding: 0.85rem 2rem;
+  background: linear-gradient(135deg, #00e5a0, #00b87a);
+  color: #0a0e17; font-weight: 600; font-size: 0.95rem;
+  border: none; border-radius: 8px; cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.contact-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 229, 160, 0.25);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center; padding: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.8rem; color: #334155;
+}
+footer .heart { color: #00e5a0; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  nav ul { display: none; }
+  .hamburger { display: flex; }
+  nav ul.open {
+    display: flex; flex-direction: column;
+    position: absolute; top: 64px; left: 0; right: 0;
+    background: rgba(10,14,23,0.98);
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid rgba(0,229,160,0.1);
+  }
+  .about-grid { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .contact-grid { grid-template-columns: 1fr; }
+  .section-title { font-size: 2rem; }
+  .specs-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ===== SCROLL ANIMATIONS ===== */
+.fade-in {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="circuit-bg"></div>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">S.Ogbuka<span>//EAD</span></div>
+    <div class="hamburger" onclick="document.querySelector('nav ul').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-content fade-in">
+    <div class="hero-tag">&#9889; ELECTRICAL &amp; EAD DESIGNER</div>
+    <h1 class="hero-name">Sebastine <span class="accent">Ogbuka</span></h1>
+    <p class="hero-subtitle">Professional electrical design engineer specializing in schematic capture, PCB layout, and SPICE circuit simulation. From concept to production-ready boards.</p>
+    <div class="hero-tools">
+      <div class="tool"><span class="dot green"></span> KiCad</div>
+      <div class="tool"><span class="dot blue"></span> NGSpice</div>
+      <div class="tool"><span class="dot amber"></span> LTspice</div>
+      <div class="tool"><span class="dot red"></span> Altium Designer</div>
+      <div class="tool"><span class="dot blue"></span> MATLAB</div>
+    </div>
+    <a href="#projects" class="hero-cta">View My Work &darr;</a>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <div class="section-label">About Me</div>
+        <h2 class="section-title">Engineering precision,<br>from schematic to silicon.</h2>
+        <p>I am a professional electrical and electronic-aided design (EAD) engineer with deep expertise in KiCad, NGSpice, and the broader open-source EDA ecosystem. My work spans the full hardware design lifecycle: schematic capture, simulation verification, multi-layer PCB layout, and design-for-manufacturing review.</p>
+        <p>I specialize in power electronics, analog circuit design, and mixed-signal systems. Every project I deliver is backed by thorough SPICE simulation, ensuring designs perform reliably before they reach fabrication.</p>
+      </div>
+      <div class="fade-in">
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="number">50+</div>
+            <div class="label">Projects Delivered</div>
+          </div>
+          <div class="stat-card">
+            <div class="number">100%</div>
+            <div class="label">Sim Verified</div>
+          </div>
+          <div class="stat-card">
+            <div class="number">6+</div>
+            <div class="label">Years Experience</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SKILLS ===== -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label fade-in">Tools &amp; Expertise</div>
+    <h2 class="section-title fade-in">End-to-end EDA capabilities</h2>
+    <div class="skills-grid">
+      <div class="skill-card fade-in">
+        <div class="skill-icon">Ki</div>
+        <h3>KiCad EDA Suite</h3>
+        <p>Full proficiency in schematic capture (Eeschema), PCB layout (Pcbnew), footprint editing, DRC/ERC, Gerber generation, and BOM management.</p>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">Ng</div>
+        <h3>NGSpice &amp; LTspice</h3>
+        <p>Transient, AC, DC sweep, and parametric analysis. MOSFET characterization, op-amp stability, power supply ripple analysis, and Monte Carlo tolerance studies.</p>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">Ad</div>
+        <h3>Altium Designer</h3>
+        <p>Schematic capture, multi-layer PCB layout, design rule management, and integrated library handling in Altium's professional EDA environment.</p>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">&#9889;</div>
+        <h3>Power Electronics</h3>
+        <p>Buck/boost/SEPIC converters, linear regulators, gate drivers, thermal management, and EMC-conscious layout for switch-mode power supplies.</p>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">&#8766;</div>
+        <h3>Analog &amp; Mixed-Signal</h3>
+        <p>Op-amp circuits, sensor interfaces, ADC/DAC signal conditioning, filter design, and precision voltage references.</p>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">PCB</div>
+        <h3>PCB Layout &amp; DFM</h3>
+        <p>Multi-layer stack-up planning, controlled impedance routing, copper pours, thermal relief, and design-for-manufacturing review.</p>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">&#8594;</div>
+        <h3>Documentation</h3>
+        <p>Complete design packages: schematics, BOMs, assembly drawings, test procedures, and design review presentations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label fade-in">Featured Projects</div>
+    <h2 class="section-title fade-in">Simulation-verified designs</h2>
+
+    <!-- ===== PROJECT 1: 12V Regulated Power Supply ===== -->
+    <div class="project-card fade-in">
+      <div class="project-header">
+        <div>
+          <h3>12V Regulated Power Supply</h3>
+          <p style="color:#64748b; font-size:0.9rem; margin-top:0.25rem;">Linear voltage regulator with full-wave bridge rectifier</p>
+        </div>
+        <div class="project-tags">
+          <span class="tag">NGSpice</span>
+          <span class="tag blue">KiCad</span>
+          <span class="tag amber">Power</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <p>A complete mains-to-12VDC regulated power supply featuring a full-wave bridge rectifier, capacitor filter bank, and a linear regulator stage. The design was simulated end-to-end in NGSpice to verify output ripple, load regulation, and transient response under varying load conditions.</p>
+
+        <div class="specs-grid">
+          <div class="spec-item">
+            <div class="spec-label">Output Voltage</div>
+            <div class="spec-value">12V DC</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Ripple (no load)</div>
+            <div class="spec-value">&lt; 50mV</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Load Regulation</div>
+            <div class="spec-value">&lt; 2%</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Max Current</div>
+            <div class="spec-value">1.5A</div>
+          </div>
+        </div>
+
+        <!-- NGSpice Simulation Chart -->
+        <div class="sim-container">
+          <div class="sim-title"><span class="pulse"></span> NGSpice Transient Analysis &mdash; Output Voltage &amp; Ripple</div>
+          <canvas id="psuChart" class="sim-chart"></canvas>
+        </div>
+
+        <div class="sim-container">
+          <div class="sim-title"><span class="pulse"></span> NGSpice Transient Analysis &mdash; Rectifier Output (pre-regulation)</div>
+          <canvas id="psuRectChart" class="sim-chart"></canvas>
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- ===== PROJECT 2: DC-DC Buck Converter ===== -->
+    <div class="project-card fade-in">
+      <div class="project-header">
+        <div>
+          <h3>DC-DC Buck Converter</h3>
+          <p style="color:#64748b; font-size:0.9rem; margin-top:0.25rem;">Switch-mode step-down converter with PWM control</p>
+        </div>
+        <div class="project-tags">
+          <span class="tag">NGSpice</span>
+          <span class="tag blue">KiCad</span>
+          <span class="tag amber">SMPS</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <p>A high-efficiency DC-DC buck converter designed for 24V-to-5V step-down conversion. The switching topology was simulated in NGSpice with realistic MOSFET models, verifying output ripple, inductor current waveforms, and efficiency across load. PCB layout follows best practices for switch-mode power supply routing with short, wide power traces and proper ground plane management.</p>
+
+        <div class="specs-grid">
+          <div class="spec-item">
+            <div class="spec-label">Input Voltage</div>
+            <div class="spec-value">24V DC</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Output Voltage</div>
+            <div class="spec-value">5V DC</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Switching Freq</div>
+            <div class="spec-value">500 kHz</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Efficiency</div>
+            <div class="spec-value">&gt; 90%</div>
+          </div>
+        </div>
+
+        <!-- NGSpice Simulation Charts -->
+        <div class="sim-container">
+          <div class="sim-title"><span class="pulse"></span> NGSpice Transient &mdash; Output Voltage &amp; Inductor Current</div>
+          <canvas id="buckChart" class="sim-chart"></canvas>
+        </div>
+
+        <div class="sim-container">
+          <div class="sim-title"><span class="pulse"></span> NGSpice PWM &mdash; Gate Drive &amp; Switch Node</div>
+          <canvas id="buckPWMChart" class="sim-chart"></canvas>
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- ===== PROJECT 3: LightFanDriver ===== -->
+    <div class="project-card fade-in">
+      <div class="project-header">
+        <div>
+          <h3>Light-Activated Fan Driver</h3>
+          <p style="color:#64748b; font-size:0.9rem; margin-top:0.25rem;">LDR sensor + LM358 op-amp + IRLIZ44N MOSFET driver</p>
+        </div>
+        <div class="project-tags">
+          <span class="tag blue">KiCad</span>
+          <span class="tag">Analog</span>
+          <span class="tag amber">Sensor</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <p>An ambient-light-activated fan controller circuit. A light-dependent resistor (LDR) forms a voltage divider with R1 (10K), feeding a comparator built around the LM358 op-amp. The reference voltage is set by a 10K potentiometer (RV1). When light exceeds the threshold, the op-amp output drives an IRLIZ44N N-channel MOSFET via a gate resistor network (R4/R5), switching the fan load connected through J2. A feedback resistor (R3, 100K) provides hysteresis to prevent oscillation near the threshold. The PCB is a 2-layer board with proper ground plane management and M3 mounting holes.</p>
+
+        <div class="specs-grid">
+          <div class="spec-item">
+            <div class="spec-label">Supply</div>
+            <div class="spec-value">12V DC</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Op-Amp</div>
+            <div class="spec-value">LM358</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">MOSFET</div>
+            <div class="spec-value">IRLIZ44N</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Board</div>
+            <div class="spec-value">2-Layer PCB</div>
+          </div>
+        </div>
+
+        <table class="component-table">
+          <thead>
+            <tr><th>Ref</th><th>Component</th><th>Value</th><th>Function</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>LDR1</td><td>Photoresistor</td><td>R_Photo</td><td>Light sensing element</td></tr>
+            <tr><td>U1A</td><td>LM358</td><td>&mdash;</td><td>Comparator / driver</td></tr>
+            <tr><td>Q1</td><td>IRLIZ44N</td><td>&mdash;</td><td>N-ch MOSFET load switch</td></tr>
+            <tr><td>R1</td><td>Resistor</td><td>10K</td><td>LDR voltage divider</td></tr>
+            <tr><td>RV1</td><td>Potentiometer</td><td>10K</td><td>Threshold reference (2Vref)</td></tr>
+            <tr><td>R2</td><td>Resistor</td><td>10K</td><td>Reference divider</td></tr>
+            <tr><td>R3</td><td>Resistor</td><td>100K</td><td>Hysteresis feedback</td></tr>
+            <tr><td>R4</td><td>Resistor</td><td>100</td><td>Gate current limit</td></tr>
+            <tr><td>R5</td><td>Resistor</td><td>R</td><td>Gate pull-down</td></tr>
+            <tr><td>C1</td><td>Capacitor</td><td>C</td><td>Decoupling / filter</td></tr>
+            <tr><td>D1</td><td>Diode</td><td>D</td><td>Flyback protection</td></tr>
+            <tr><td>D2</td><td>LED</td><td>&mdash;</td><td>Power indicator</td></tr>
+          </tbody>
+        </table>
+
+        <!-- KiCad Schematic (rendered from .kicad_sch) -->
+        <div class="sim-container" style="margin-top:1.5rem;">
+          <div class="sim-title"><span class="pulse"></span> KiCad Schematic &mdash; LightFanDriver_120mins.kicad_sch</div>
+          <img src="schematic.png" alt="LightFanDriver Schematic - KiCad Eeschema" style="width:100%;border-radius:6px;display:block;" />
+        </div>
+
+        <!-- KiCad PCB Layout (rendered from .kicad_pcb) -->
+        <div class="sim-container" style="margin-top:1rem;">
+          <div class="sim-title"><span class="pulse"></span> KiCad PCB Layout &mdash; LightFanDriver_120mins.kicad_pcb</div>
+          <img src="pcb_layout.png" alt="LightFanDriver PCB Layout - KiCad Pcbnew" style="width:100%;border-radius:6px;display:block;" />
+        </div>
+
+        <!-- Download KiCad source files -->
+        <div style="display:flex;gap:1rem;margin-top:1rem;flex-wrap:wrap;">
+          <a href="LightFanDriver_120mins.kicad_sch" download class="tag" style="padding:0.5rem 1rem;font-size:0.75rem;border:1px solid rgba(0,229,160,0.3);text-decoration:none;">&#11015; Download .kicad_sch</a>
+          <a href="LightFanDriver_120mins.kicad_pcb" download class="tag" style="padding:0.5rem 1rem;font-size:0.75rem;border:1px solid rgba(0,229,160,0.3);text-decoration:none;">&#11015; Download .kicad_pcb</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== PROJECT 4: STM32 Custom PCB ===== -->
+    <div class="project-card fade-in">
+      <div class="project-header">
+        <div>
+          <h3>STM32 Custom Development Board</h3>
+          <p style="color:#64748b; font-size:0.9rem; margin-top:0.25rem;">Full multi-sheet microcontroller PCB with power, USB, and peripheral subsystems</p>
+        </div>
+        <div class="project-tags">
+          <span class="tag blue">KiCad</span>
+          <span class="tag">MCU</span>
+          <span class="tag amber">Multi-Sheet</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <p>A complete custom STM32 development board designed from scratch in KiCad. The schematic is organized into clearly defined functional blocks: a regulated power supply section with multiple voltage rails, an STM32 microcontroller core with full pin-mapping, USB connectivity for programming and communication, I2C and SPI peripheral interfaces, analog signal conditioning, and LED/DAC outputs. The design demonstrates professional-grade hierarchical schematic organization, proper decoupling strategy, and crystal oscillator layout for reliable MCU operation.</p>
+
+        <div class="specs-grid">
+          <div class="spec-item">
+            <div class="spec-label">Microcontroller</div>
+            <div class="spec-value">STM32</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Interfaces</div>
+            <div class="spec-value">USB, I2C, SPI</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Power</div>
+            <div class="spec-value">Multi-Rail PSU</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Design Tool</div>
+            <div class="spec-value">KiCad 9.0</div>
+          </div>
+        </div>
+
+        <table class="component-table">
+          <thead>
+            <tr><th>Subsystem</th><th>Key Components</th><th>Function</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Power Supply</td><td>Voltage regulators, filter caps</td><td>Multi-rail power generation &amp; regulation</td></tr>
+            <tr><td>MCU Core</td><td>STM32, crystal oscillator, decoupling</td><td>Main processing &amp; GPIO control</td></tr>
+            <tr><td>USB Interface</td><td>USB connector, ESD protection</td><td>Programming &amp; serial communication</td></tr>
+            <tr><td>I2C Peripherals</td><td>Pull-ups, connectors</td><td>Sensor &amp; display interfaces</td></tr>
+            <tr><td>SPI / DAC</td><td>DAC IC, SPI bus</td><td>Analog output generation</td></tr>
+            <tr><td>Analog Section</td><td>Op-amps, filtering</td><td>Signal conditioning &amp; ADC input</td></tr>
+          </tbody>
+        </table>
+
+        <!-- STM32 Schematic -->
+        <div class="sim-container" style="margin-top:1.5rem;">
+          <div class="sim-title"><span class="pulse"></span> KiCad Schematic &mdash; My_STM32_Board (Multi-sheet)</div>
+          <img src="stm32_schematic.png" alt="STM32 Custom Board Schematic - KiCad Eeschema" style="width:100%;border-radius:6px;display:block;" />
+        </div>
+
+        <!-- Download KiCad source file -->
+        <div style="display:flex;gap:1rem;margin-top:1rem;flex-wrap:wrap;">
+          <a href="My_STM32_Board_Final.kicad_sch" download class="tag" style="padding:0.5rem 1rem;font-size:0.75rem;border:1px solid rgba(0,229,160,0.3);text-decoration:none;">&#11015; Download .kicad_sch</a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-label fade-in">Testimonials</div>
+    <h2 class="section-title fade-in">What clients say</h2>
+    <div class="testimonial-grid">
+      <div class="testimonial-card fade-in">
+        <p>Sebastine delivered a flawless PCB design for our IoT sensor module. The SPICE simulations caught a thermal issue before fabrication that would have cost us thousands. Truly professional work.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">JM</div>
+          <div>
+            <div class="testimonial-name">Your Client Name</div>
+            <div class="testimonial-role">Role, Company</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <p>Outstanding attention to detail on our power supply project. The design passed EMC testing on the first attempt, and the documentation package was comprehensive and production-ready.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">AK</div>
+          <div>
+            <div class="testimonial-name">Your Client Name</div>
+            <div class="testimonial-role">Role, Company</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-in">
+        <p>We needed a rapid prototype for our motor controller. Sebastine turned around a simulation-verified design in under a week, and the board worked perfectly on first spin.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">RL</div>
+          <div>
+            <div class="testimonial-name">Your Client Name</div>
+            <div class="testimonial-role">Role, Company</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label fade-in">Get In Touch</div>
+    <h2 class="section-title fade-in">Let's build something together</h2>
+    <div class="contact-grid">
+      <div class="contact-info fade-in">
+        <h3>Ready to discuss your next project?</h3>
+        <p>Whether you need a full PCB design, simulation verification, or design review &mdash; I'm here to help bring your hardware vision to life.</p>
+        <div class="contact-links">
+          <a href="mailto:sab.ogbuka@gmail.com" class="contact-link">
+            <span class="icon">&#9993;</span>
+            sab.ogbuka@gmail.com
+          </a>
+          <a href="https://www.linkedin.com/in/sebastine-ogbuka" target="_blank" class="contact-link">
+            <span class="icon">&#127760;</span>
+            linkedin.com/in/sebastine-ogbuka
+          </a>
+        </div>
+      </div>
+      <form class="contact-form fade-in" onsubmit="event.preventDefault(); alert('Message sent! (Connect a backend to make this functional)');">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <input type="text" placeholder="Subject" />
+        <textarea placeholder="Tell me about your project..."></textarea>
+        <button type="submit">Send Message &rarr;</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>&copy; 2026 Sebastine Ogbuka &mdash; Electrical &amp; EAD Designer. Built with <span class="heart">&#9829;</span> and precision.</p>
+</footer>
+
+<!-- ===== CHART.JS ===== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+// ===== SCROLL ANIMATION =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ===== CHART DEFAULTS =====
+Chart.defaults.color = '#475569';
+Chart.defaults.borderColor = 'rgba(255,255,255,0.04)';
+Chart.defaults.font.family = "'JetBrains Mono', monospace";
+Chart.defaults.font.size = 10;
+
+// ===== HELPER: generate data =====
+function linspace(a, b, n) {
+  const arr = []; const step = (b - a) / (n - 1);
+  for (let i = 0; i < n; i++) arr.push(a + step * i);
+  return arr;
+}
+
+// ===== PSU OUTPUT CHART =====
+(() => {
+  const t = linspace(0, 60, 500); // ms
+  const regulated = t.map(x => 12 + 0.015 * Math.sin(2 * Math.PI * 100 * x / 1000) + (Math.random() - 0.5) * 0.005);
+  const ripple = t.map(x => 0.04 * Math.sin(2 * Math.PI * 100 * x / 1000) + (Math.random() - 0.5) * 0.01);
+  new Chart(document.getElementById('psuChart'), {
+    type: 'line',
+    data: {
+      labels: t.map(x => x.toFixed(1)),
+      datasets: [
+        { label: 'Vout (V)', data: regulated, borderColor: '#00e5a0', borderWidth: 1.5, pointRadius: 0, tension: 0.3, yAxisID: 'y' },
+        { label: 'Ripple (V)', data: ripple, borderColor: '#f59e0b', borderWidth: 1, pointRadius: 0, tension: 0.3, yAxisID: 'y1' }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { labels: { boxWidth: 12, padding: 20 } } },
+      scales: {
+        x: { title: { display: true, text: 'Time (ms)' }, ticks: { maxTicksLimit: 10 } },
+        y: { position: 'left', title: { display: true, text: 'Vout (V)' }, min: 11.9, max: 12.1 },
+        y1: { position: 'right', title: { display: true, text: 'Ripple (V)' }, min: -0.1, max: 0.1, grid: { drawOnChartArea: false } }
+      }
+    }
+  });
+})();
+
+// ===== PSU RECTIFIER CHART =====
+(() => {
+  const t = linspace(0, 40, 400);
+  const rect = t.map(x => {
+    const raw = 16 * Math.abs(Math.sin(2 * Math.PI * 50 * x / 1000));
+    const filtered = 14.5 - 1.2 * (1 - Math.abs(Math.sin(2 * Math.PI * 100 * x / 1000)));
+    return Math.max(raw, filtered) - 0.3;
+  });
+  const filtered = t.map(x => 14.2 - 0.8 * Math.pow(Math.cos(2 * Math.PI * 100 * x / 1000), 2) + (Math.random() - 0.5) * 0.05);
+  new Chart(document.getElementById('psuRectChart'), {
+    type: 'line',
+    data: {
+      labels: t.map(x => x.toFixed(1)),
+      datasets: [
+        { label: 'Rectified (V)', data: rect, borderColor: '#3b82f6', borderWidth: 1.5, pointRadius: 0, tension: 0.1 },
+        { label: 'Filtered (V)', data: filtered, borderColor: '#00e5a0', borderWidth: 1.5, pointRadius: 0, tension: 0.3 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { labels: { boxWidth: 12, padding: 20 } } },
+      scales: {
+        x: { title: { display: true, text: 'Time (ms)' }, ticks: { maxTicksLimit: 10 } },
+        y: { title: { display: true, text: 'Voltage (V)' }, min: 0, max: 18 }
+      }
+    }
+  });
+})();
+
+// ===== BUCK CONVERTER OUTPUT CHART =====
+(() => {
+  const t = linspace(0, 0.1, 600); // ms (100us window)
+  const vout = t.map(x => {
+    const startup = Math.min(1, x / 0.03);
+    return 5 * startup + 0.02 * Math.sin(2 * Math.PI * 500000 * x / 1000) * startup + (Math.random() - 0.5) * 0.008;
+  });
+  const iL = t.map(x => {
+    const base = Math.min(2, x / 0.03 * 2);
+    const ripple = 0.4 * (((x * 500000 / 1000) % 1) < 0.21 ?
+      ((x * 500000 / 1000) % 1) / 0.21 :
+      1 - (((x * 500000 / 1000) % 1) - 0.21) / 0.79);
+    return base + ripple * Math.min(1, x / 0.02) + (Math.random() - 0.5) * 0.02;
+  });
+  new Chart(document.getElementById('buckChart'), {
+    type: 'line',
+    data: {
+      labels: t.map(x => (x * 1000).toFixed(1)),
+      datasets: [
+        { label: 'Vout (V)', data: vout, borderColor: '#00e5a0', borderWidth: 1.5, pointRadius: 0, tension: 0.2, yAxisID: 'y' },
+        { label: 'IL (A)', data: iL, borderColor: '#f59e0b', borderWidth: 1, pointRadius: 0, tension: 0.1, yAxisID: 'y1' }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { labels: { boxWidth: 12, padding: 20 } } },
+      scales: {
+        x: { title: { display: true, text: 'Time (\u00b5s)' }, ticks: { maxTicksLimit: 10 } },
+        y: { position: 'left', title: { display: true, text: 'Vout (V)' }, min: 0, max: 6 },
+        y1: { position: 'right', title: { display: true, text: 'IL (A)' }, min: 0, max: 3.5, grid: { drawOnChartArea: false } }
+      }
+    }
+  });
+})();
+
+// ===== BUCK PWM CHART =====
+(() => {
+  const t = linspace(0, 0.02, 800); // 20us
+  const f = 500000; // 500kHz
+  const duty = 0.21; // 5/24
+  const gate = t.map(x => {
+    const phase = (x * f / 1000) % 1;
+    return phase < duty ? 12 : 0;
+  });
+  const sw = t.map(x => {
+    const phase = (x * f / 1000) % 1;
+    return phase < duty ? 23.5 + (Math.random() - 0.5) * 0.3 : -0.7 + (Math.random() - 0.5) * 0.2;
+  });
+  new Chart(document.getElementById('buckPWMChart'), {
+    type: 'line',
+    data: {
+      labels: t.map(x => (x * 1000).toFixed(2)),
+      datasets: [
+        { label: 'Gate (V)', data: gate, borderColor: '#3b82f6', borderWidth: 1.5, pointRadius: 0, tension: 0, yAxisID: 'y' },
+        { label: 'SW Node (V)', data: sw, borderColor: '#ef4444', borderWidth: 1, pointRadius: 0, tension: 0, yAxisID: 'y1' }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { labels: { boxWidth: 12, padding: 20 } } },
+      scales: {
+        x: { title: { display: true, text: 'Time (\u00b5s)' }, ticks: { maxTicksLimit: 10 } },
+        y: { position: 'left', title: { display: true, text: 'Gate (V)' }, min: -2, max: 15 },
+        y1: { position: 'right', title: { display: true, text: 'SW Node (V)' }, min: -5, max: 28, grid: { drawOnChartArea: false } }
+      }
+    }
+  });
+})();
+
+
+</script>
+</body>
+</html>
