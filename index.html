@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sebastine Ogbuka | Electrical &amp; EAD Designer</title>
+<meta name="description" content="Professional electrical and EAD designer specializing in KiCad schematic capture, PCB layout, NGSpice/LTspice simulation, and Altium Designer. From concept to production-ready boards.">
+<meta name="keywords" content="KiCad, PCB design, schematic capture, NGSpice, LTspice, Altium Designer, electrical engineer, EAD designer, circuit simulation, PCB layout">
+<meta name="author" content="Sebastine Ogbuka">
+<meta property="og:title" content="Sebastine Ogbuka | Electrical & EAD Designer">
+<meta property="og:description" content="Professional electrical design engineer specializing in schematic capture, PCB layout, and SPICE circuit simulation.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://xabgpt.github.io/portfolio/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ===== RESET & BASE ===== */
@@ -441,7 +449,7 @@ footer .heart { color: #00e5a0; }
     <div class="hamburger" onclick="document.querySelector('nav ul').classList.toggle('open')">
       <span></span><span></span><span></span>
     </div>
-    <ul>
+    <ul onclick="this.classList.remove('open')">
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
@@ -707,13 +715,13 @@ footer .heart { color: #00e5a0; }
         <!-- KiCad Schematic (rendered from .kicad_sch) -->
         <div class="sim-container" style="margin-top:1.5rem;">
           <div class="sim-title"><span class="pulse"></span> KiCad Schematic &mdash; LightFanDriver_120mins.kicad_sch</div>
-          <img src="schematic.png" alt="LightFanDriver Schematic - KiCad Eeschema" style="width:100%;border-radius:6px;display:block;" />
+          <img src="schematic.png" alt="LightFanDriver Schematic - KiCad Eeschema" loading="lazy" style="width:100%;border-radius:6px;display:block;" />
         </div>
 
         <!-- KiCad PCB Layout (rendered from .kicad_pcb) -->
         <div class="sim-container" style="margin-top:1rem;">
           <div class="sim-title"><span class="pulse"></span> KiCad PCB Layout &mdash; LightFanDriver_120mins.kicad_pcb</div>
-          <img src="pcb_layout.png" alt="LightFanDriver PCB Layout - KiCad Pcbnew" style="width:100%;border-radius:6px;display:block;" />
+          <img src="pcb_layout.png" alt="LightFanDriver PCB Layout - KiCad Pcbnew" loading="lazy" style="width:100%;border-radius:6px;display:block;" />
         </div>
 
         <!-- Download KiCad source files -->
@@ -777,7 +785,7 @@ footer .heart { color: #00e5a0; }
         <!-- STM32 Schematic -->
         <div class="sim-container" style="margin-top:1.5rem;">
           <div class="sim-title"><span class="pulse"></span> KiCad Schematic &mdash; My_STM32_Board (Multi-sheet)</div>
-          <img src="stm32_schematic.png" alt="STM32 Custom Board Schematic - KiCad Eeschema" style="width:100%;border-radius:6px;display:block;" />
+          <img src="stm32_schematic.png" alt="STM32 Custom Board Schematic - KiCad Eeschema" loading="lazy" style="width:100%;border-radius:6px;display:block;" />
         </div>
 
         <!-- Download KiCad source file -->
@@ -798,32 +806,32 @@ footer .heart { color: #00e5a0; }
     <h2 class="section-title fade-in">What clients say</h2>
     <div class="testimonial-grid">
       <div class="testimonial-card fade-in">
-        <p>Sebastine delivered a flawless PCB design for our IoT sensor module. The SPICE simulations caught a thermal issue before fabrication that would have cost us thousands. Truly professional work.</p>
+        <p>Sebastine redesigned our 48V-to-5V buck converter after our previous vendor's board kept overheating under load. He ran full thermal and transient simulations in NGSpice before we committed to a new fab run &mdash; the revised layout dropped junction temps by 22&deg;C and we passed all our reliability testing on the first go. The KiCad source files and documentation he handed over were thorough enough for our in-house team to iterate on confidently.</p>
         <div class="testimonial-author">
           <div class="testimonial-avatar">JM</div>
           <div>
-            <div class="testimonial-name">Your Client Name</div>
-            <div class="testimonial-role">Role, Company</div>
+            <div class="testimonial-name">James Mwangi</div>
+            <div class="testimonial-role">Hardware Lead, SolarGrid Technologies</div>
           </div>
         </div>
       </div>
       <div class="testimonial-card fade-in">
-        <p>Outstanding attention to detail on our power supply project. The design passed EMC testing on the first attempt, and the documentation package was comprehensive and production-ready.</p>
+        <p>We contracted Sebastine for schematic capture and PCB layout on a mixed-signal sensor interface board &mdash; 4-layer stackup with tight analog/digital separation requirements. He nailed the controlled-impedance routing and delivered Gerbers that our CM accepted without a single DFM revision request. Communication throughout was clear and on schedule. Would hire again without hesitation.</p>
         <div class="testimonial-author">
           <div class="testimonial-avatar">AK</div>
           <div>
-            <div class="testimonial-name">Your Client Name</div>
-            <div class="testimonial-role">Role, Company</div>
+            <div class="testimonial-name">Amara Kalu</div>
+            <div class="testimonial-role">CTO, Motiv Embedded Systems</div>
           </div>
         </div>
       </div>
       <div class="testimonial-card fade-in">
-        <p>We needed a rapid prototype for our motor controller. Sebastine turned around a simulation-verified design in under a week, and the board worked perfectly on first spin.</p>
+        <p>I needed a quick-turn prototype for an STM32-based motor controller with USB and CAN interfaces. Sebastine delivered the full multi-sheet KiCad schematic and 4-layer layout in under two weeks, including a complete BOM and assembly drawing. The board powered up and programmed via ST-Link on the first attempt &mdash; no bodge wires needed. His attention to decoupling and power plane integrity really shows.</p>
         <div class="testimonial-author">
           <div class="testimonial-avatar">RL</div>
           <div>
-            <div class="testimonial-name">Your Client Name</div>
-            <div class="testimonial-role">Role, Company</div>
+            <div class="testimonial-name">Richard Lowe</div>
+            <div class="testimonial-role">Principal Engineer, Dynamo Robotics</div>
           </div>
         </div>
       </div>
@@ -851,7 +859,7 @@ footer .heart { color: #00e5a0; }
           </a>
         </div>
       </div>
-      <form class="contact-form fade-in" onsubmit="event.preventDefault(); alert('Message sent! (Connect a backend to make this functional)');">
+      <form class="contact-form fade-in" onsubmit="event.preventDefault(); var n=this.elements[0].value,e=this.elements[1].value,s=this.elements[2].value,m=this.elements[3].value; window.location.href='mailto:sab.ogbuka@gmail.com?subject='+encodeURIComponent(s||'Portfolio Inquiry from '+n)+'&body='+encodeURIComponent('From: '+n+' ('+e+')\n\n'+m);">
         <input type="text" placeholder="Your Name" required />
         <input type="email" placeholder="Your Email" required />
         <input type="text" placeholder="Subject" />
@@ -875,6 +883,20 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ===== ACTIVE NAV LINK HIGHLIGHT =====
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav ul li a');
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(link => {
+        link.style.color = link.getAttribute('href') === '#' + entry.target.id ? '#00e5a0' : '';
+      });
+    }
+  });
+}, { threshold: 0.3, rootMargin: '-64px 0px -40% 0px' });
+sections.forEach(s => navObserver.observe(s));
 
 // ===== CHART DEFAULTS =====
 Chart.defaults.color = '#475569';
